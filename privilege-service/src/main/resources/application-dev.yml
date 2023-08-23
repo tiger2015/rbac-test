@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.100.1:3306/test?characterEncoding=utf-8&serverTimezone=GMT%2B8
+    password: test
+    username: test
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      pool-name: HikariPool-
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*.xml
+  configuration:
+    cache-enabled: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl

@@ -1,0 +1,21 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        name: gateway
+        file-extension: yaml
+        group: rbac
+        namespace: 8ba843b5-5459-4dd5-b45b-a3f4a7164f40
+      discovery:
+        namespace: 8ba843b5-5459-4dd5-b45b-a3f4a7164f40
+        group: rbac
+      server-addr: 192.168.100.8:8848
+      password: nacos
+      username: nacos
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+server:
+  port: 9000

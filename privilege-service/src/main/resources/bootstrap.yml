@@ -1,0 +1,12 @@
+spring:
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        group: rbac
+        namespace: 8ba843b5-5459-4dd5-b45b-a3f4a7164f40
+      server-addr: 192.168.100.8:8848
+      username: nacos
+      password: nacos

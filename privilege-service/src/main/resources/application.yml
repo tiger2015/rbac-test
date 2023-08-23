@@ -1,0 +1,7 @@
+server:
+  port: 9003
+  servlet:
+    context-path: /privilege
+spring:
+  application:
+    name: privilege-service

@@ -1,0 +1,28 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tiger.rbac.privilege.mapper.RoleMapper">
+
+    <resultMap id="role" type="com.tiger.rbac.privilege.model.po.Role">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="description" property="description"/>
+        <result column="create_time" property="createTime"/>
+        <result column="mod_time" property="modifiedTime"/>
+    </resultMap>
+
+    <resultMap id="rolePrivilege" extends="com.tiger.rbac.privilege.mapper.PrivilegeMapper.privilege" type="com.tiger.rbac.privilege.model.po.Privilege">
+        <association property="parent" select="com.tiger.rbac.privilege.mapper.PrivilegeMapper.selectById" column="pid"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="role">
+        select `id, `name`, `description`, `create_time`, `mod_time` from role
+    </select>
+
+    <select id="selectPrivileges" resultMap="rolePrivilege">
+        select t2.`id`, t2.`name`, t2.`title`, t2.`path`, t2.`pid`, t2.`description` from role_privilege t1
+        left join privilege t2 on t1.`privilege_id` = t2.`id`
+        where t1.`role_id` = #{roleId} and t2.`pid` != null
+    </select>
+
+</mapper>
