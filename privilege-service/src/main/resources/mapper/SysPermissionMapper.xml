@@ -1,0 +1,33 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tiger.rbac.mapper.SysPermissionMapper">
+    <resultMap id="privilege" type="com.tiger.rbac.model.po.SysPermission">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="perms" property="perms"/>
+        <result column="pid" property="pid"/>
+        <result column="order" property="order"/>
+        <result column="description" property="description"/>
+        <result column="create_time" property="createTime"/>
+        <result column="mod_time" property="modifiedTime"/>
+    </resultMap>
+
+    <select id="selectByRole" resultMap="privilege">
+        select
+        t2.id, t2.name, t2.perms, t2.pid, t2.order, t2.description, t2.create_time, t2.mod_time
+        from sys_role_permission t1
+        left join sys_permission t2 on t1.permission_id = t2.id and t2.is_deleted = 0
+        where t1.role_id = #{roleId}
+    </select>
+
+    <select id="selectByUser" resultMap="privilege">
+        select
+        p.id, p.name, p.perms, p.pid, p.order, p.description, p.create_time, p.mod_time
+        from sys_role_permission rp
+        left join sys_permission p on rp.permission_id = p.id and p.is_deleted = 0
+        where rp.role_id in
+        (select t1.role_id from sys_user_role t1 where t1.user_id = #{userId})
+    </select>
+
+</mapper>
