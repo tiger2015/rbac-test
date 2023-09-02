@@ -21,6 +21,8 @@ public class SysRole extends BaseInfo {
     @TableField
     private String name;
     @TableField
+    private String code;
+    @TableField
     private String description;
     @TableLogic
     private Integer isDeleted;

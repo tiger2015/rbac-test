@@ -1,5 +1,6 @@
 package com.tiger.rbac.model.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -12,11 +13,12 @@ import java.time.LocalDateTime;
  * @Version: 1.0
  **/
 @Data
-public class UserVO implements Serializable {
+public class SysUserVO implements Serializable {
     private static final long serialVersionUID = -7471761220989292428L;
-    private Long id;
+    private Integer id;
     private String name;
-    private String password;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GTM+8")
     private LocalDateTime createTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GTM+8")
     private LocalDateTime modifiedTime;
 }

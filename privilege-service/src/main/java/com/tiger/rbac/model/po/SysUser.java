@@ -1,9 +1,6 @@
 package com.tiger.rbac.model.po;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -17,11 +14,13 @@ import org.springframework.data.relational.core.mapping.Table;
 @Data
 public class SysUser extends BaseInfo {
     @TableId(type = IdType.AUTO)
-    private Long id;
+    private Integer id;
     @TableField
     private String name;
-    @TableField
+    @TableField(updateStrategy = FieldStrategy.IGNORED)
     private String password;
+    @TableField(updateStrategy = FieldStrategy.IGNORED)
+    private String salt;
     @TableLogic
     private Integer isDeleted;
 }

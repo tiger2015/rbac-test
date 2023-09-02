@@ -16,5 +16,5 @@ import java.util.List;
 @Mapper
 public interface SysPermissionMapper extends BaseMapper<SysPermission> {
     List<SysPermission> selectByRole(@Param("roleId") Integer roleId);
-    List<SysPermission> selectByUser(@Param("userId") Long userId);
+    List<SysPermission> selectByUser(@Param("userId") Integer userId);
 }

@@ -2,6 +2,7 @@ package com.tiger.rbac.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.tiger.rbac.common.exception.BusinessException;
 import com.tiger.rbac.model.po.SysUser;
 
 /**
@@ -19,4 +20,8 @@ public interface SysUserService extends IService<SysUser> {
      * @return
      */
     IPage<SysUser> listByPage(Integer pageSize, Integer pageNum);
+
+    boolean add(SysUser sysUser) throws BusinessException;
+
+    SysUser selectByName(String name);
 }

@@ -12,10 +12,12 @@ import java.time.LocalDateTime;
  * @Version: 1.0
  **/
 @Data
-public class RoleVO implements Serializable {
+public class SysRoleVO implements Serializable {
     private static final long serialVersionUID = 761844211192584831L;
     private Integer id;
     private String name;
+    private String code;
+    private String description;
     private LocalDateTime createTime;
     private LocalDateTime modifiedTime;
 }

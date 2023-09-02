@@ -22,6 +22,11 @@ public class ResponseResult<T> implements Serializable {
         this.message = resultCode.message;
     }
 
+    private ResponseResult(int code, String message) {
+        this.code = code;
+        this.message = message;
+    }
+
     public int getCode() {
         return code;
     }
@@ -34,19 +39,22 @@ public class ResponseResult<T> implements Serializable {
         return data;
     }
 
-    public static ResponseResult success(ResultCode code) {
-        ResponseResult result = new ResponseResult(code);
+    public static ResponseResult<Void> success() {
+        ResponseResult<Void> result = new ResponseResult<>(ResultCode.SUCCESS);
         return result;
     }
 
-    public static <T> ResponseResult success(ResultCode code, T data) {
-        ResponseResult result = new ResponseResult(code);
+    public static <T> ResponseResult<T> success(T data) {
+        ResponseResult<T> result = new ResponseResult<>(ResultCode.SUCCESS);
         result.data = data;
         return result;
     }
 
-    public static ResponseResult error(ResultCode code) {
-        ResponseResult result = new ResponseResult(code);
-        return result;
+    public static ResponseResult<Void> error(int code, String message) {
+        return new ResponseResult<>(code, message);
+    }
+
+    public static ResponseResult<Void> error(ResultCode code) {
+        return new ResponseResult<>(code);
     }
 }

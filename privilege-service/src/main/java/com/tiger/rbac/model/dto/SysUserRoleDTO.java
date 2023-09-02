@@ -11,8 +11,8 @@ import java.io.Serializable;
  * @Version: 1.0
  **/
 @Data
-public class UserRoleDTO implements Serializable {
+public class SysUserRoleDTO implements Serializable {
     private static final long serialVersionUID = -6999101504363943800L;
-    private Long userId;
+    private Integer userId;
     private Integer roleId;
 }

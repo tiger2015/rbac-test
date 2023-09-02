@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://127.0.0.1:5432/test
+    password: postgres
+    username: postgres
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      pool-name: HikariPool-
+      connection-timeout: 5000
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*.xml
+  configuration:
+    cache-enabled: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+  global-config:
+    db-config:
+      logic-delete-field: is_deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+auth:
+  token-secret: admin
+  token-valid-time: 1800
+  private-key: MIIBUwIBADANBgkqhkiG9w0BAQEFAASCAT0wggE5AgEAAkEAotjBHz0bUkpzcfSbEK3tA+UzEaYz8sMB7varpvQnM0XkMQVBf9pMveYkZfWT+3mdxO/5PldZ21OECcTsmkdJowIDAQABAkBrF7axb4M3M+UF7QHJD0hOhn12PuHs5VexKiEqc2gQK/iOj5OPlx8VxpUYTRQNTxHJ/9t6hQcrlB9qJ+E0Ieo5AiEA6M6eOIwBb+VZJ9QwW7bGXRQRTorDN0kOowOLl9KVIY0CIQCzEefEj37xGGfbi3SRIbCyr/gTEVRkDFqvINOdnS2T7wIgK+2AsU7JnqF59yf0j/mm6D03HsjUGQRx/JRYrKcReKkCIADuhesy5/EvNFMjHZ8nsrirS7olq++9VLd2j0NRrwwHAiABZe1c+3W7++pSV6657HnvJc6lOQnhDD/KxB740+LSYw==

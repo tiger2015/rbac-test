@@ -5,3 +5,5 @@ server:
 spring:
   application:
     name: privilege-service
+logging:
+  config: classpath:log4j2.xml

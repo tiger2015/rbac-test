@@ -3,6 +3,8 @@ package com.tiger.rbac;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScans;
 
 /**
  * @Author Zenghu
@@ -11,6 +13,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @Version: 1.0
  **/
 @SpringBootApplication
+@ComponentScans(@ComponentScan(basePackages = {"com.tiger.rbac.common.controller"}))
 @EnableDiscoveryClient
 public class PrivilegeService {
     public static void main(String[] args) {

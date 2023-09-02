@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: dev
+    active: postgres
   cloud:
     nacos:
       discovery:

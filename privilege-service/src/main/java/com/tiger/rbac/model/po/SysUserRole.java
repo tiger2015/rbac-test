@@ -14,7 +14,7 @@ import org.springframework.data.relational.core.mapping.Table;
 @Data
 public class SysUserRole extends BaseInfo {
     @TableField("user_id")
-    private Long userId;
+    private Integer userId;
     @TableField("role_id")
     private Integer roleId;
 }

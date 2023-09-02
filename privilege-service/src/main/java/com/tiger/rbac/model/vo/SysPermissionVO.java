@@ -12,12 +12,12 @@ import java.time.LocalDateTime;
  * @Version: 1.0
  **/
 @Data
-public class PrivilegeVO implements Serializable {
+public class SysPermissionVO implements Serializable {
     private static final long serialVersionUID = 309505352217566756L;
     private Integer id;
     private String name;
-    private String title;
-    private String path;
+    private String perms;
+    private String description;
     private Integer pid;
     private LocalDateTime createTime;
     private LocalDateTime modifiedTime;

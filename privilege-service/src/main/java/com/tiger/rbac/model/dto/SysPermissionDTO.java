@@ -12,13 +12,12 @@ import java.time.LocalDateTime;
  * @Version: 1.0
  **/
 @Data
-public class PrivilegeDTO implements Serializable {
+public class SysPermissionDTO implements Serializable {
     private static final long serialVersionUID = 5496677952396179454L;
     private Integer id;
     private String name;
-    private String path;
-    private String title;
-    private Integer sort;
+    private String perms;
+    private Integer order;
     private String description;
     private Integer parent;
     private LocalDateTime createTime;

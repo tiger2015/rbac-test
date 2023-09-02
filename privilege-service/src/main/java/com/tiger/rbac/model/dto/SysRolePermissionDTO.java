@@ -11,8 +11,8 @@ import java.io.Serializable;
  * @Version: 1.0
  **/
 @Data
-public class RolePrivilegeDTO implements Serializable {
+public class SysRolePermissionDTO implements Serializable {
     private static final long serialVersionUID = 1474075388023726179L;
     private Integer roleId;
-    private Integer privilegeId;
+    private Integer permissionId;
 }

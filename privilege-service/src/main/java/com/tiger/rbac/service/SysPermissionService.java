@@ -36,5 +36,5 @@ public interface SysPermissionService extends IService<SysPermission> {
      * @param userId
      * @return
      */
-    List<SysPermission> listByUserId(Long userId);
+    List<SysPermission> listByUserId(Integer userId);
 }
