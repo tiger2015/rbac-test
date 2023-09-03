@@ -25,7 +25,16 @@ public class Test01 {
     public void test01() throws NoSuchAlgorithmException {
         final String replace = UUID.randomUUID().toString().replace("-", "");
         System.out.println(replace);
-        final String encode = PasswordUtils.encode("12345abcdefghtjklmnopq_++", replace);
+        final String encode = PasswordUtils.encode("12345", replace);
+        System.out.println(encode);
+    }
+
+
+    @Test
+    public void test011() throws NoSuchAlgorithmException {
+        String salt = "1bd2cc6ab57e41d4ae74a6538a8c5084";
+        String password = "12345";
+        String encode = PasswordUtils.encode(password, salt);
         System.out.println(encode);
     }
 
@@ -51,7 +60,7 @@ public class Test01 {
     @Test
     public void test04() throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, InvalidKeySpecException, BadPaddingException, InvalidKeyException {
         String publicKey = "MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKLYwR89G1JKc3H0mxCt7QPlMxGmM/LDAe72q6b0JzNF5DEFQX/aTL3mJGX1k/t5ncTv+T5XWdtThAnE7JpHSaMCAwEAAQ==";
-        String admin = RSAUtils.encryptByPublicKey(publicKey, "123456");
+        String admin = RSAUtils.encryptByPublicKey(publicKey, "12345");
         // VEEPIDOA+EpDcym+2rHeXXIRZKzMgoIb0GRlDttzw+e/zKIXFrapFM4tW/jO/r64fMjI5zJc57Qdqll/ji2INg==
         System.out.println(admin);
 

@@ -1,11 +1,13 @@
 package com.tiger.rbac.auth;
 
+import com.tiger.rbac.cache.AuthenticationCache;
 import com.tiger.rbac.common.utils.JwtTokenUtil;
 import com.tiger.rbac.config.AuthConfig;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.util.ObjectUtils;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -21,10 +23,16 @@ import java.io.IOException;
  * @Description
  * @Version: 1.0
  **/
+@Component
 public class JwtTokenFilter extends OncePerRequestFilter {
     public static final String HEADER_TOKEN = "token";
 
+    @Autowired
     private AuthConfig authConfig;
+
+    @Autowired
+    private AuthenticationCache cache;
+
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -36,17 +44,10 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         String username = JwtTokenUtil.getUsername(authConfig.getTokenSecret(), token);
         // 从缓存中获取授权信息
         SecurityContext context = SecurityContextHolder.getContext();
-        Authentication authentication = context.getAuthentication();
-        if (!ObjectUtils.isEmpty(authentication)){
-
-
-
+        if (context.getAuthentication() == null) {
+            Authentication authentication = cache.get(username);
+            context.setAuthentication(authentication);
         }
-
-
-
-
-
-
+        filterChain.doFilter(request, response);
     }
 }

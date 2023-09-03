@@ -1,9 +1,11 @@
+spring:
+  profiles:
+    active: postgres
+  application:
+    name: privilege-service
 server:
   port: 9003
   servlet:
     context-path: /privilege
-spring:
-  application:
-    name: privilege-service
 logging:
   config: classpath:log4j2.xml

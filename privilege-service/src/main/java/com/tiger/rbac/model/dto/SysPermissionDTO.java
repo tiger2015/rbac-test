@@ -3,7 +3,6 @@ package com.tiger.rbac.model.dto;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 /**
  * @Author Zenghu
@@ -20,6 +19,4 @@ public class SysPermissionDTO implements Serializable {
     private Integer order;
     private String description;
     private Integer parent;
-    private LocalDateTime createTime;
-    private LocalDateTime modifiedTime;
 }

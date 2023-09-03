@@ -20,6 +20,10 @@ mybatis-plus:
       logic-delete-value: 1
       logic-not-delete-value: 0
 
+cache:
+  config: classpath:/ehcache.xml
+
+
 auth:
   token-secret: admin
   token-valid-time: 1800

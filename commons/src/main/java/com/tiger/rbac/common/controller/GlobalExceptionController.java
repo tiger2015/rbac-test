@@ -1,7 +1,9 @@
 package com.tiger.rbac.common.controller;
 
+import com.auth0.jwt.exceptions.*;
 import com.tiger.rbac.common.exception.BusinessException;
 import com.tiger.rbac.common.result.ResponseResult;
+import com.tiger.rbac.common.result.ResultCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -22,4 +24,16 @@ public class GlobalExceptionController {
         return ResponseResult.error(exception.getCode(), exception.getMessage());
     }
 
+    @ExceptionHandler(value = TokenExpiredException.class)
+    public ResponseResult<Void> tokenExpiredException(TokenExpiredException exception) {
+        log.error(exception.getMessage(), exception);
+        return ResponseResult.error(ResultCode.TOKEN_EXPIRED);
+    }
+
+    @ExceptionHandler(value = {AlgorithmMismatchException.class, InvalidClaimException.class,
+            SignatureVerificationException.class, JWTDecodeException.class})
+    public ResponseResult<Void> invalidTokenException(Exception exception) {
+        log.error(exception.getMessage(), exception);
+        return ResponseResult.error(ResultCode.INVALID_TOKEN);
+    }
 }

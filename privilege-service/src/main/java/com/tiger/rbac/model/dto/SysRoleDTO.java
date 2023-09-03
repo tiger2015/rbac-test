@@ -1,10 +1,8 @@
 package com.tiger.rbac.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 /**
  * @Author Zenghu
@@ -19,8 +17,4 @@ public class SysRoleDTO implements Serializable {
     private String name;
     private String code;
     private String description;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GTM+8")
-    private LocalDateTime createTime;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GTM+8")
-    private LocalDateTime modifiedTime;
 }

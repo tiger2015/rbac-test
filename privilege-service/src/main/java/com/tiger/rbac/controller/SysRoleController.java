@@ -6,10 +6,7 @@ import com.tiger.rbac.model.dto.SysRoleDTO;
 import com.tiger.rbac.model.po.SysRole;
 import com.tiger.rbac.service.SysRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Author Zenghu
@@ -31,8 +28,9 @@ public class SysRoleController {
         return ResponseResult.success(sysRole.getId());
     }
 
-
-
-
-
+    @DeleteMapping("/delete/{id}")
+    public ResponseResult<Integer> deleteById(@PathVariable Integer id) {
+        boolean b = sysRoleService.removeById(id);
+        return ResponseResult.success(b ? 1 : 0);
+    }
 }

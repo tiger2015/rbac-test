@@ -4,7 +4,6 @@ import com.tiger.rbac.model.dto.SysRoleDTO;
 import com.tiger.rbac.model.po.SysRole;
 import com.tiger.rbac.model.vo.SysRoleVO;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 /**
@@ -17,12 +16,6 @@ import org.mapstruct.factory.Mappers;
 public interface SysRoleConverter {
     SysRoleConverter INSTANCE = Mappers.getMapper(SysRoleConverter.class);
 
-    @Mapping(source = "id", target = "id")
-    @Mapping(source = "name", target = "name")
-    @Mapping(source = "description", target = "description")
-    @Mapping(source = "createTime", target = "createTime")
-    @Mapping(source = "modifiedTime", target = "modifiedTime")
     SysRole dtoToPo(SysRoleDTO dto);
-
     SysRoleVO poToVo(SysRole po);
 }

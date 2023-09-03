@@ -1,6 +1,8 @@
 package com.tiger.rbac.controller;
 
+import com.tiger.rbac.auth.AuthenticationResult;
 import com.tiger.rbac.auth.LoginInfo;
+import com.tiger.rbac.cache.AuthenticationCache;
 import com.tiger.rbac.common.exception.BusinessException;
 import com.tiger.rbac.common.result.ResponseResult;
 import com.tiger.rbac.common.result.ResultCode;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.crypto.BadPaddingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,8 +47,11 @@ public class LoginController {
     @Autowired
     private AuthConfig authConfig;
 
+    @Autowired
+    private AuthenticationCache cache;
+
     @PostMapping("/login")
-    public ResponseResult<Object> login(LoginInfo loginInfo) throws BusinessException {
+    public ResponseResult<AuthenticationResult> login(LoginInfo loginInfo) throws BusinessException {
         try {
             // 验证码验证
 
@@ -66,14 +72,12 @@ public class LoginController {
             Map<String, Object> claims = new HashMap<>();
             claims.put("user", loginInfo.getUsername());
             String token = JwtTokenUtil.genToken(authConfig.getTokenSecret(), authConfig.getTokenValidTime(), claims);
-            Map<String, Object> result = new HashMap<>();
-            result.put("token", token);
+            AuthenticationResult result = new AuthenticationResult();
+            result.setToken(token);
             // 缓存
-
-
-
+            cache.put(loginInfo.getUsername(), authenticate);
             return ResponseResult.success(result);
-        } catch (AuthenticationException e) {
+        } catch (AuthenticationException | BadPaddingException e) {
             throw new BusinessException(ResultCode.BAD_PASSWORD, e);
         } catch (Exception e) {
             throw new BusinessException(ResultCode.UNAUTHORIZED, e);
