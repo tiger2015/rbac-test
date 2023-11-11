@@ -20,7 +20,6 @@ import java.util.Map;
  **/
 public class JwtTokenUtil {
 
-
     /**
      * 生成token
      *
@@ -73,16 +72,16 @@ public class JwtTokenUtil {
 
 
     /**
-     * 从token中取出用户名
+     * 从token中取出指定名称
      *
      * @param secret
      * @param token
      * @return
      */
-    public static String getUsername(String secret, String token) {
+    public static String getClaim(String secret, String token, String name) {
         JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(secret)).build();
         DecodedJWT verify = jwtVerifier.verify(token);
-        return verify.getClaim("user").asString();
+        return verify.getClaim(name).asString();
     }
 
 }

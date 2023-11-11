@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      PostgreSQL 9.x                               */
-/* Created on:     2023/9/2 13:01:57                            */
+/* Created on:     2023/9/3 19:07:42                            */
 /*==============================================================*/
 
 
@@ -41,9 +41,9 @@ create table sys_menu (
 create table sys_permission (
    id                   SERIAL not null,
    name                 VARCHAR(128)         not null,
-   perms                VARCHAR(128)         null,
    pid                  INT4                 null,
-   "order"              INT4                 null,
+   permis               VARCHAR(128)         null,
+   sort                 INT4                 null,
    description          TEXT                 null,
    create_time          TIMESTAMP            null default CURRENT_TIMESTAMP,
    mod_time             TIMESTAMP            null,
@@ -58,7 +58,6 @@ create table sys_permission (
 create table sys_role (
    id                   SERIAL not null,
    name                 VARCHAR(16)          null,
-   code                 VARCHAR(32)          null,
    description          TEXT                 null,
    create_time          TIMESTAMP            null default CURRENT_TIMESTAMP,
    mod_time             TIMESTAMP            null,
@@ -84,8 +83,7 @@ create table sys_role_permission (
 create table sys_user (
    id                   SERIAL not null,
    name                 VARCHAR(16)          not null,
-   password             VARCHAR(64)          not null,
-   salt                 VARCHAR(32)          null,
+   password             VARCHAR(32)          not null,
    create_time          TIMESTAMP            null default CURRENT_TIMESTAMP,
    mod_time             TIMESTAMP            null,
    is_deleted           INT2                 null default 0,
@@ -115,7 +113,7 @@ alter table sys_menu
       on delete set null on update cascade;
 
 alter table sys_permission
-   add constraint FK_SYS_PERM_PRIVILEGE_SYS_PERM foreign key (pid)
+   add constraint FK_SYS_PERM_PERMISSIO_SYS_PERM foreign key (pid)
       references sys_permission (id)
       on delete set null on update cascade;
 

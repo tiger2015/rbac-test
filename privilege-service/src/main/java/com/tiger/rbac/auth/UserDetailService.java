@@ -30,7 +30,9 @@ public class UserDetailService implements UserDetailsService {
     private SysUserService sysUserService;
     @Autowired
     private SysPermissionService sysPermissionService;
+
     private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         SysUser sysUser = sysUserService.selectByName(username);

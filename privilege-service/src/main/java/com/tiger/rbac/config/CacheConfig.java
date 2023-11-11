@@ -5,9 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.ehcache.CacheManager;
 import org.ehcache.config.builders.CacheManagerBuilder;
 import org.ehcache.xml.XmlConfiguration;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import javax.cache.Caching;
 import javax.cache.spi.CachingProvider;
@@ -19,8 +17,8 @@ import java.net.URL;
  * @Description
  * @Version: 1.0
  **/
-@Configuration
-@ConfigurationProperties(prefix = "cache")
+//@Configuration
+//@ConfigurationProperties(prefix = "cache")
 @Data
 @Slf4j
 public class CacheConfig {

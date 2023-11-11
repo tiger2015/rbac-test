@@ -9,6 +9,16 @@ spring:
       minimum-idle: 5
       pool-name: HikariPool-
       connection-timeout: 5000
+  redis:
+    password: tiger
+    port: 6379
+    host: 192.168.100.8
+    lettuce:
+      pool:
+        max-active: 8
+        min-idle: 4
+        max-idle: 4
+        max-wait: 5000
 mybatis-plus:
   mapper-locations: classpath*:mapper/*.xml
   configuration:
@@ -22,6 +32,7 @@ mybatis-plus:
 
 cache:
   config: classpath:/ehcache.xml
+
 
 
 auth:

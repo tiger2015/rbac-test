@@ -26,7 +26,7 @@ public class SysPermission extends BaseInfo {
     @TableField
     private String perms;
     @TableField
-    private Integer order;
+    private Integer sort;
     @TableField
     private String description;
     @TableField

@@ -12,6 +12,7 @@ import com.tiger.rbac.common.utils.RSAUtils;
 import com.tiger.rbac.config.AuthConfig;
 import com.tiger.rbac.model.po.SysUser;
 import com.tiger.rbac.service.SysUserService;
+import com.tiger.rbac.utils.IDUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -71,6 +72,7 @@ public class LoginController {
             // 生成token
             Map<String, Object> claims = new HashMap<>();
             claims.put("user", loginInfo.getUsername());
+            claims.put("uuid", IDUtils.id());
             String token = JwtTokenUtil.genToken(authConfig.getTokenSecret(), authConfig.getTokenValidTime(), claims);
             AuthenticationResult result = new AuthenticationResult();
             result.setToken(token);

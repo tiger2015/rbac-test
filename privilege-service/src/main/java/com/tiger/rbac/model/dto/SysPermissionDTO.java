@@ -16,7 +16,7 @@ public class SysPermissionDTO implements Serializable {
     private Integer id;
     private String name;
     private String perms;
-    private Integer order;
+    private Integer sort;
     private String description;
     private Integer parent;
 }

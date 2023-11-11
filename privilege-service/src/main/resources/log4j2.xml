@@ -19,7 +19,7 @@
         <Logger name="com.tiger.rbac.mapper" level="debug" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
-        <Root level="info">
+        <Root level="INFO">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="RollingFile"/>
         </Root>

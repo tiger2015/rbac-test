@@ -2,6 +2,7 @@ package com.tiger.rbac.config;
 
 import com.tiger.rbac.auth.JwtTokenFilter;
 import com.tiger.rbac.auth.UserDetailService;
+import com.tiger.rbac.filter.ExceptionFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,6 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtTokenFilter jwtTokenFilter;
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
@@ -41,6 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().formLogin().disable()
                 .logout().disable();
         http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(new ExceptionFilter(), JwtTokenFilter.class);
     }
 
 

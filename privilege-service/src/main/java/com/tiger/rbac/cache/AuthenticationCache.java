@@ -1,13 +1,8 @@
 package com.tiger.rbac.cache;
 
 import lombok.extern.slf4j.Slf4j;
-import org.ehcache.Cache;
-import org.ehcache.CacheManager;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
 
 /**
  * @Author Zenghu
@@ -20,29 +15,37 @@ import javax.annotation.PostConstruct;
 public class AuthenticationCache {
 
 
-    @Autowired
-    private CacheManager cacheManager;
+//    @Autowired
+//    private CacheManager cacheManager;
+//
+//    private Cache<String, Authentication> authenticationCache;
+//
+//    @PostConstruct
+//    public void init() {
+//        authenticationCache = cacheManager.getCache("authenticationCache", String.class, Authentication.class);
+//    }
 
-    private Cache<String, Authentication> authenticationCache;
 
-    @PostConstruct
-    public void init() {
-        authenticationCache = cacheManager.getCache("authenticationCache", String.class, Authentication.class);
+    private final RedisCache<String, Object> redisCache;
+
+
+    public AuthenticationCache(RedisCache<String, Object> redisCache) {
+        this.redisCache = redisCache;
     }
 
     public void put(String key, Authentication value) {
-        authenticationCache.put(key, value);
+        redisCache.set(key, value);
     }
 
     public Authentication get(String key) {
-        return authenticationCache.get(key);
+        return redisCache.get(key);
     }
 
     public void remove(String key) {
-        authenticationCache.remove(key);
+        redisCache.remove(key);
     }
 
     public void clear() {
-        authenticationCache.clear();
+        redisCache.clear();
     }
 }
